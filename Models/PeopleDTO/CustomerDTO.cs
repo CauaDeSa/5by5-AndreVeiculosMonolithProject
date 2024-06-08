@@ -10,10 +10,10 @@ namespace Models.PeopleDTO
         public Address Address { get; set; }
         public string Telephone { get; set; }
         public string Email { get; set; }
-        public decimal Income { get; set; }
+        public Decimal Income { get; set; }
         public string DocumentPDF { get; set; }
 
-        public CustomerDTO(string document, string name, DateTime birthDate, int addressId, string telephone, string email, decimal income, string documentPDF)
+        public CustomerDTO(string document, string name, DateTime birthDate, int addressId, string telephone, string email, Decimal income, string documentPDF)
         {
             Document = document;
             Name = name;

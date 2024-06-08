@@ -7,7 +7,7 @@ public class Purchase
 {
     public int Id { get; set; }
     public Car Car { get; set; }
-    public decimal Price { get; set; }
+    public Decimal Price { get; set; }
     public DateTime PurchaseDate { get; set; }
 
     public Purchase(PurchaseDTO purchaseDTO)

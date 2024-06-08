@@ -8,7 +8,7 @@ namespace Models.ProfitableDTO
     {
         public Car Car { get; set; }
         public DateTime SaleDate { get; set; }
-        public decimal SalePrice { get; set; }
+        public Decimal SalePrice { get; set; }
         public Customer Customer { get; set; }
         public Employee Employee { get; set; }
         public Payment Payment { get; set; }

@@ -11,10 +11,10 @@ namespace Models.PeopleDTO
         public string Telephone { get; set; }
         public string Email { get; set; }
         public JobTitle Function { get; set; }
-        public decimal ComissionAmount { get; set; }
-        public decimal Comission { get; set; }
+        public Decimal ComissionAmount { get; set; }
+        public Decimal Comission { get; set; }
 
-        public EmployeeDTO(string document, string name, DateTime birthDate, int addressId, string telephone, string email, int functionId, decimal comissionAmount, decimal comission)
+        public EmployeeDTO(string document, string name, DateTime birthDate, int addressId, string telephone, string email, int functionId, Decimal comissionAmount, Decimal comission)
         {
             Document = document;
             Name = name;

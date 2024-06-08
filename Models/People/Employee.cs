@@ -5,8 +5,8 @@ namespace Models.People;
 public class Employee : Person
 {
     public JobTitle Function { get; set; }
-    public decimal ComissionAmount { get; set; }
-    public decimal Comission { get; set; }
+    public Decimal ComissionAmount { get; set; }
+    public Decimal Comission { get; set; }
 
     public Employee() { }
 

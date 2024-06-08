@@ -6,7 +6,7 @@ namespace Models.People;
 
 public class Customer : Person
 {
-    public decimal Income { get; set; }
+    public Decimal Income { get; set; }
     public string DocumentPDF { get; set; }
 
     public Customer() { }

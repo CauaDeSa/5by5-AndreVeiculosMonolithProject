@@ -9,6 +9,8 @@ public class CarOperation
     public Operation Operation { get; set; }
     public bool OperationStatus { get; set; }
 
+    public CarOperation() { }
+
     public CarOperation(CarOperationDTO carOperationDTO)
     {
         Car = carOperationDTO.Car;
