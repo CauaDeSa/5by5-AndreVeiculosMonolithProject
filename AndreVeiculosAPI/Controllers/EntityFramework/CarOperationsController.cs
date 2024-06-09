@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Models.Cars;
 using Models.CarsDTO;
 
-namespace AndreVeiculosAPI.Controllers
+namespace AndreVeiculosAPI.Controllers.EntityFramework
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -17,7 +17,7 @@ namespace AndreVeiculosAPI.Controllers
             _context = context;
         }
 
-        [HttpGet]
+        [HttpGet("carOperation/entity")]
         public async Task<ActionResult<IEnumerable<CarOperation>>> GetCarOperation()
         {
             if (_context.CarOperation == null)
@@ -27,7 +27,7 @@ namespace AndreVeiculosAPI.Controllers
             return await _context.CarOperation.Include(c => c.Car).Include(o => o.Operation).ToListAsync();
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("carOperation/entity/{id}")]
         public async Task<ActionResult<CarOperation>> GetCarOperation(int id)
         {
             if (_context.CarOperation == null)
@@ -45,36 +45,36 @@ namespace AndreVeiculosAPI.Controllers
             return carOperation;
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutCarOperation(int id, CarOperation carOperation)
-        {
-            if (id != carOperation.Id)
-            {
-                return BadRequest();
-            }
+        //[HttpPut("carOperation/entity/{id}")]
+        //public async Task<IActionResult> PutCarOperation(int id, CarOperation carOperation)
+        //{
+        //    if (id != carOperation.Id)
+        //    {
+        //        return BadRequest();
+        //    }
 
-            _context.Entry(carOperation).State = EntityState.Modified;
+        //    _context.Entry(carOperation).State = EntityState.Modified;
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!CarOperationExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //    try
+        //    {
+        //        await _context.SaveChangesAsync();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!CarOperationExists(id))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
 
-            return NoContent();
-        }
+        //    return NoContent();
+        //}
 
-        [HttpPost]
+        [HttpPost("carOperation/entity")]
         public async Task<ActionResult<CarOperation>> PostCarOperation(CarOperationDTO dto)
         {
             CarOperation carOperation = new CarOperation(dto);
@@ -88,29 +88,28 @@ namespace AndreVeiculosAPI.Controllers
             return CreatedAtAction("GetCarOperation", new { id = carOperation.Id }, carOperation);
         }
 
-        // DELETE: api/CarOperations/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCarOperation(int id)
-        {
-            if (_context.CarOperation == null)
-            {
-                return NotFound();
-            }
-            var carOperation = await _context.CarOperation.FindAsync(id);
-            if (carOperation == null)
-            {
-                return NotFound();
-            }
+        //[HttpDelete("{id}")]
+        //public async Task<IActionResult> DeleteCarOperation(int id)
+        //{
+        //    if (_context.CarOperation == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    var carOperation = await _context.CarOperation.FindAsync(id);
+        //    if (carOperation == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            _context.CarOperation.Remove(carOperation);
-            await _context.SaveChangesAsync();
+        //    _context.CarOperation.Remove(carOperation);
+        //    await _context.SaveChangesAsync();
 
-            return NoContent();
-        }
+        //    return NoContent();
+        //}
 
-        private bool CarOperationExists(int id)
-        {
-            return (_context.CarOperation?.Any(e => e.Id == id)).GetValueOrDefault();
-        }
+        //private bool CarOperationExists(int id)
+        //{
+        //    return (_context.CarOperation?.Any(e => e.Id == id)).GetValueOrDefault();
+        //}
     }
 }

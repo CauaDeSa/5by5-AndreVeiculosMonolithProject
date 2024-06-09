@@ -1,4 +1,6 @@
-﻿namespace Models.People;
+﻿using Models.PeopleDTO;
+
+namespace Models.People;
 
 public class Address
 {
