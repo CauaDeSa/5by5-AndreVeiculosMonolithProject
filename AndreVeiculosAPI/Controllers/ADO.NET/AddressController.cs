@@ -21,7 +21,7 @@ public class AddressController
         using SqlCommand command = new()
         {
             Connection = connection,
-            CommandText = "SELECT * FROM Address WHERE Id = @id"
+            CommandText = Address.Select
         };
 
         command.Parameters.AddWithValue("@id", id);
@@ -56,7 +56,7 @@ public class AddressController
         using SqlCommand command = new()
         {
             Connection = connection,
-            CommandText = "INSERT INTO Address (PublicPlace, ZipCode, Neighborhood, PublicPlaceType, Number, Complement, State, City) OUTPUT INSERTED.Id VALUES (@publicPlace, @zipCode, @neighborhood, @publicPlaceType, @number, @complement, @state, @city)"
+            CommandText = Address.Insert
         };
 
         command.Parameters.AddWithValue("@publicPlace", address.PublicPlace);

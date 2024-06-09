@@ -51,7 +51,7 @@ public class JobTitlesController
         SqlCommand command = new()
         {
             Connection = connection,
-            CommandText = "SELECT * FROM JobTitle WHERE Id = @id"
+            CommandText = JobTitle.Select
         };
 
         command.Parameters.AddWithValue("@id", id);
@@ -80,7 +80,7 @@ public class JobTitlesController
         using SqlCommand command = new()
         {
             Connection = connection,
-            CommandText = "INSERT INTO JobTitle (Description) OUTPUT INSERTED.Id VALUES (@description)"
+            CommandText = JobTitle.Insert
         };
 
         command.Parameters.AddWithValue("@description", dto.Description);

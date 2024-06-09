@@ -20,7 +20,7 @@ public class PixTypeController
         SqlCommand command = new()
         {
             Connection = connection,
-            CommandText = "SELECT * FROM PixType WHERE Id = @pixTypeId"
+            CommandText = PixType.Select
         };
 
         command.Parameters.AddWithValue("@pixTypeId", pixTypeId);
@@ -48,7 +48,7 @@ public class PixTypeController
         using SqlCommand command = new()
         {
             Connection = connection,
-            CommandText = "INSERT INTO PixType (Name) OUPTPUT INSERTED.Id VALUES (@Name)"
+            CommandText = PixType.Insert
         };
 
         command.Parameters.AddWithValue("@Name", pixType.Name);

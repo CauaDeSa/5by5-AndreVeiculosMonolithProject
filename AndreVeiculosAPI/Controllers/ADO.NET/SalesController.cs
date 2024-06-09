@@ -34,7 +34,7 @@ public class SalesController
         using SqlCommand command = new()
         {
             Connection = connection,
-            CommandText = "SELECT * FROM Sale"
+            CommandText = Sale.SelectAll
         };
 
         using SqlDataReader reader = await command.ExecuteReaderAsync();
@@ -66,7 +66,7 @@ public class SalesController
         SqlCommand command = new()
         {
             Connection = connection,
-            CommandText = "SELECT * FROM Sale WHERE Id = @id"
+            CommandText = Sale.Select
         };
 
         command.Parameters.AddWithValue("@id", id);
@@ -100,7 +100,7 @@ public class SalesController
         using SqlCommand command = new()
         {
             Connection = connection,
-            CommandText = "INSERT INTO Sale (CarPlate, SaleDate, SalePrice, CustomerDocument, EmployeeDocument, PaymentId) OUTPUT INSERTED.Id VALUES (@carPlate, @saleDate, @salePrice, @customerDocument, @employeeDocument, @paymentId)"
+            CommandText = Sale.Insert
         };
 
         command.Parameters.AddWithValue("@carPlate", dto.CarPlate);

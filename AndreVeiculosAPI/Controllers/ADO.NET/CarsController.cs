@@ -23,7 +23,7 @@ public class CarsController
         using SqlCommand command = new()
         {
             Connection = connection,
-            CommandText = "SELECT * FROM Car"
+            CommandText = Car.SelectAll
         };
 
         using SqlDataReader reader = await command.ExecuteReaderAsync();
@@ -54,7 +54,7 @@ public class CarsController
         using SqlCommand command = new()
         {
             Connection = connection,
-            CommandText = "SELECT * FROM Car WHERE Plate = @plate"
+            CommandText = Car.Select
         };
 
         command.Parameters.AddWithValue("@plate", plate);
@@ -87,7 +87,7 @@ public class CarsController
         using SqlCommand command = new()
         {
             Connection = connection,
-            CommandText = "INSERT INTO Car (Plate, Name, ModelYear, ManufactureYear, Color, Sold) OUTPUT INSERTED.Plate VALUES (@plate, @name, @modelYear, @manufactureYear, @color, @sold)"
+            CommandText = Car.Insert
         };
 
         command.Parameters.AddWithValue("@plate", car.Plate);

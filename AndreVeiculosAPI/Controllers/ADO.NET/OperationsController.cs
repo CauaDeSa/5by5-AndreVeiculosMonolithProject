@@ -24,7 +24,7 @@ public class OperationsController
         using SqlCommand command = new()
         {
             Connection = connection,
-            CommandText = "SELECT * FROM Operation"
+            CommandText = Operation.SelectAll
         };
 
         using SqlDataReader reader = await command.ExecuteReaderAsync();
@@ -51,7 +51,7 @@ public class OperationsController
         SqlCommand command = new()
         {
             Connection = connection,
-            CommandText = "SELECT * FROM Operation WHERE Id = @id"
+            CommandText = Operation.Select
         };
 
         command.Parameters.AddWithValue("@id", id);
@@ -80,7 +80,7 @@ public class OperationsController
         using SqlCommand command = new()
         {
             Connection = connection,
-            CommandText = "INSERT INTO Operation (Description) OUTPUT INSERTED.Id VALUES (@description)"
+            CommandText = Operation.Insert
         };
 
         command.Parameters.AddWithValue("@description", operationDTO.Description);

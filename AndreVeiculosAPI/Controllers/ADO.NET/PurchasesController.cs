@@ -26,7 +26,7 @@ public class PurchasesController
         using SqlCommand command = new()
         {
             Connection = connection,
-            CommandText = "SELECT * FROM Purchase"
+            CommandText = Purchase.SelectAll
         };
 
         using SqlDataReader reader = await command.ExecuteReaderAsync();
@@ -55,7 +55,7 @@ public class PurchasesController
         SqlCommand command = new()
         {
             Connection = connection,
-            CommandText = "SELECT * FROM Purchase WHERE Id = @id"
+            CommandText = Purchase.Select
         };
 
         command.Parameters.AddWithValue("@id", id);
@@ -86,7 +86,7 @@ public class PurchasesController
         SqlCommand command = new()
         {
             Connection = connection,
-            CommandText = "INSERT INTO Purchase (CarPlate, Price, PurchaseDate) OUTPUT INSERTED.Id VALUES (@carPlate, @price, @purchaseDate)"
+            CommandText = Purchase.Insert
         };
 
         command.Parameters.AddWithValue("@carPlate", dto.CarPlate);

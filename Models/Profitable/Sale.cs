@@ -6,6 +6,10 @@ namespace Models.Profitable;
 
 public class Sale
 {
+    public static readonly string SelectAll = "SELECT * FROM Sale";
+    public static readonly string Select = "SELECT * FROM Sale WHERE Id = @id";
+    public static readonly string Insert = "INSERT INTO Sale (CarPlate, SaleDate, SalePrice, CustomerDocument, EmployeeDocument, PaymentId) OUTPUT INSERTED.Id VALUES (@carPlate, @saleDate, @salePrice, @customerDocument, @employeeDocument, @paymentId)";
+
     public int Id { get; set; }
     public Car Car { get; set; }
     public DateTime SaleDate { get; set; }
