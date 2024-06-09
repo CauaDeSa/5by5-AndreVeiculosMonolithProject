@@ -28,7 +28,7 @@ public class CarOperationsController
 
         SqlCommand command = new()
         {
-            CommandText = "SELECT * FROM CarOperation",
+            CommandText = CarOperation.SelectAll,
             Connection = connection
         };
 
@@ -62,7 +62,7 @@ public class CarOperationsController
 
         SqlCommand command = new()
         {
-            CommandText = "SELECT * FROM CarOperation WHERE Id = @id",
+            CommandText = CarOperation.Select,
             Connection = connection
         };
 
@@ -97,7 +97,7 @@ public class CarOperationsController
 
         SqlCommand command = new()
         {
-            CommandText = "INSERT INTO CarOperation (CarPlate, OperationId, OperationStatus) OUTPUT INSERTED.ID VALUES (@carPlate, @operationId, @OperationStatus)",
+            CommandText = CarOperation.Insert,
             Connection = connection
         };
 

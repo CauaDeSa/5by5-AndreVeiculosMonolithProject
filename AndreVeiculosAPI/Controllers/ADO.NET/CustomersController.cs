@@ -26,7 +26,7 @@ public class CustomersController
         using SqlCommand command = new()
         {
             Connection = connection,
-            CommandText = "SELECT * FROM Customer"
+            CommandText = Customer.SelectAll
         };
 
         using SqlDataReader reader = await command.ExecuteReaderAsync();
@@ -75,7 +75,7 @@ public class CustomersController
         using SqlCommand command = new()
         {
             Connection = connection,
-            CommandText = "SELECT * FROM Customer WHERE Document = @document"
+            CommandText = Customer.Select
         };
 
         command.Parameters.AddWithValue("@Document", document);
@@ -110,7 +110,7 @@ public class CustomersController
         using SqlCommand command = new()
         {
             Connection = connection,
-            CommandText = "INSERT INTO Customer (Document, Income, DocumentPDF, Name, BirthDate, AddressId, Telephone, Email) OUTPUT INSERTED.Document VALUES (@Document, @Income, @DocumentPDF, @Name, @BirthDate, @AddressId, @Telephone, @Email)"
+            CommandText = Customer.Insert
         };
 
         command.Parameters.AddWithValue("@Document", customer.Document);

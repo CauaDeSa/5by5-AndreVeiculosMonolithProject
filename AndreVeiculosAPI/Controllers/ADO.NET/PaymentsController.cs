@@ -30,7 +30,7 @@ public class PaymentsController
         using SqlCommand command = new()
         {
             Connection = connection,
-            CommandText = "SELECT * FROM Payment"
+            CommandText = Payment.SelectAll
         };
 
         using SqlDataReader reader = await command.ExecuteReaderAsync();
@@ -61,7 +61,7 @@ public class PaymentsController
         SqlCommand command = new()
         {
             Connection = connection,
-            CommandText = "SELECT * FROM Payment WHERE Id = @id"
+            CommandText = Payment.Select
         };
 
         command.Parameters.AddWithValue("@id", id);
@@ -93,7 +93,7 @@ public class PaymentsController
         using SqlCommand command = new()
         {
             Connection = connection,
-            CommandText = "INSERT INTO Payment (CardNumber, FetlockId, PixId, PaymentDate) OUTPUT INSERTED.Id VALUES (@CardNumber, @FetlockId, @PixId, @PaymentDate)"
+            CommandText = Payment.Insert
         };
 
         command.Parameters.AddWithValue("@CardNumber", _cardController.GetCard(dto.CardNumber).CardNumber);

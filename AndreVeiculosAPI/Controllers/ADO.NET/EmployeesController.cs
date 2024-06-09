@@ -27,7 +27,7 @@ public class EmployeesController
         using SqlCommand command = new()
         {
             Connection = connection,
-            CommandText = "SELECT * FROM Employee"
+            CommandText = Employee.SelectAll
         };
 
         using SqlDataReader reader = await command.ExecuteReaderAsync();
@@ -61,7 +61,7 @@ public class EmployeesController
         SqlCommand command = new()
         {
             Connection = connection,
-            CommandText = "SELECT * FROM Employee WHERE Document = @document"
+            CommandText = Employee.Select
         };
 
         command.Parameters.AddWithValue("@Document", document);
@@ -97,7 +97,7 @@ public class EmployeesController
         using SqlCommand command = new()
         {
             Connection = connection,
-            CommandText = "INSERT INTO Employee (Document, FunctionId, ComissionAmount, Comission, Name, BirthDate, AddressId, Telephone, Email) OUTPUT INSERTED.Document VALUES (@Document, @FunctionId, @ComissionAmount, @Comission, @Name, @BirthDate, @AddressId, @Telephone, @Email)"
+            CommandText = Employee.Insert
         };
 
         command.Parameters.AddWithValue("@Document", employee.Document);

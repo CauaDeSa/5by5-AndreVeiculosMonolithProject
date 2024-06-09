@@ -19,7 +19,7 @@ public class CardController
         SqlCommand command = new()
         {
             Connection = connection,
-            CommandText = "SELECT * FROM Card WHERE CardNumber = @cardNumber"
+            CommandText = Card.Select
         };
 
         command.Parameters.AddWithValue("@cardNumber", cardNumber);
@@ -49,7 +49,7 @@ public class CardController
         using SqlCommand command = new()
         {
             Connection = connection,
-            CommandText = "INSERT INTO Card (CardNumber, SecurityKey, DueDate, CardName) VALUES (@CardNumber, @SecurityKey, @DueDate, @CardName)"
+            CommandText = Card.Insert
         };
 
         command.Parameters.AddWithValue("@CardNumber", card.CardNumber);

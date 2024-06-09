@@ -20,7 +20,7 @@ public class FetlockController
         SqlCommand command = new()
         {
             Connection = connection,
-            CommandText = "SELECT * FROM Fetlock WHERE Id = @fetlockId"
+            CommandText = Fetlock.Select
         };
 
         command.Parameters.AddWithValue("@fetlockId", fetlockId);
@@ -49,7 +49,7 @@ public class FetlockController
         SqlCommand command = new()
         {
             Connection = connection,
-            CommandText = "INSERT INTO Fetlock (Number, DueDate) OUPTPUT INSERTED.Id VALUES (@Number, @DueDate)"
+            CommandText = Fetlock.Insert
         };
 
         command.Parameters.AddWithValue("@Number", fetlock.Number);
