@@ -10,21 +10,8 @@ namespace Models.PeopleDTO
         public Address Address { get; set; }
         public string Telephone { get; set; }
         public string Email { get; set; }
-        public JobTitle Function { get; set; }
-        public Decimal ComissionAmount { get; set; }
-        public Decimal Comission { get; set; }
-
-        public EmployeeDTO(string document, string name, DateTime birthDate, int addressId, string telephone, string email, int functionId, Decimal comissionAmount, Decimal comission)
-        {
-            Document = document;
-            Name = name;
-            BirthDate = birthDate;
-            Address = new() { Id = addressId };
-            Telephone = telephone;
-            Email = email;
-            Function = new() { Id = functionId};
-            ComissionAmount = comissionAmount;
-            Comission = comission;
-        }
+        public int FunctionId { get; set; }
+        public double ComissionAmount { get; set; }
+        public double Comission { get; set; }
     }
 }

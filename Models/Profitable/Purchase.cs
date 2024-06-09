@@ -7,12 +7,14 @@ public class Purchase
 {
     public int Id { get; set; }
     public Car Car { get; set; }
-    public Decimal Price { get; set; }
+    public double Price { get; set; }
     public DateTime PurchaseDate { get; set; }
+
+    public Purchase() { }
 
     public Purchase(PurchaseDTO purchaseDTO)
     {
-        Car = purchaseDTO.Car;
+        Car = new() { Plate = purchaseDTO.CarPlate };
         Price = purchaseDTO.Price;
         PurchaseDate = purchaseDTO.PurchaseDate;
     }

@@ -6,21 +6,21 @@ namespace Models.ProfitableDTO
 {
     public class SaleDTO
     {
-        public Car Car { get; set; }
+        public string CarPlate { get; set; }
         public DateTime SaleDate { get; set; }
-        public Decimal SalePrice { get; set; }
-        public Customer Customer { get; set; }
-        public Employee Employee { get; set; }
-        public Payment Payment { get; set; }
+        public double SalePrice { get; set; }
+        public string CustomerDocument { get; set; }
+        public string EmployeeDocument { get; set; }
+        public int PaymentId { get; set; }
 
-        public SaleDTO(string carPlate, DateTime saleDate, decimal salePrice, string customerDocument, string employeeDocument, int paymentId)
+        public SaleDTO(string carPlate, DateTime saleDate, double salePrice, string customerDocument, string employeeDocument, int paymentId)
         {
-            this.Car = new() { Plate = carPlate };
+            this.CarPlate = carPlate;
             this.SaleDate = saleDate;
             this.SalePrice = salePrice;
-            this.Customer = new() { Document = customerDocument };
-            this.Employee = new() { Document = employeeDocument };
-            this.Payment = new() { Id = paymentId };
+            this.CustomerDocument = customerDocument;
+            this.EmployeeDocument = employeeDocument;
+            this.PaymentId = paymentId;
         }
     }
 }

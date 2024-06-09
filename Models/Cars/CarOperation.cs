@@ -13,8 +13,8 @@ public class CarOperation
 
     public CarOperation(CarOperationDTO carOperationDTO)
     {
-        Car = carOperationDTO.Car;
-        Operation = carOperationDTO.Operation;
+        Car = new() { Plate = carOperationDTO.CarPlate };
+        Operation = new() { Id = carOperationDTO.OperationId };
         OperationStatus = carOperationDTO.OperationStatus;
     }
 }

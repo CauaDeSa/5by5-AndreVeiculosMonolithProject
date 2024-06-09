@@ -4,14 +4,14 @@ namespace Models.CarsDTO
 {
     public class CarOperationDTO
     {
-        public Car Car { get; set; }
-        public Operation Operation { get; set; }
+        public string CarPlate { get; set; }
+        public int OperationId { get; set; }
         public bool OperationStatus { get; set; }
 
         public CarOperationDTO(string carPlate, int operationId, bool operationStatus)
         {
-            Car = new() { Plate = carPlate };
-            Operation = new() { Id = operationId };
+            CarPlate = carPlate;
+            OperationId = operationId;
             OperationStatus = operationStatus;
         }
     }

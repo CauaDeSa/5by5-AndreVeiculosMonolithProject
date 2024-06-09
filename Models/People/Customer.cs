@@ -1,12 +1,10 @@
-﻿using System.Reflection.Metadata;
-using System;
-using Models.PeopleDTO;
+﻿using Models.PeopleDTO;
 
 namespace Models.People;
 
 public class Customer : Person
 {
-    public Decimal Income { get; set; }
+    public double Income { get; set; }
     public string DocumentPDF { get; set; }
 
     public Customer() { }
@@ -16,7 +14,7 @@ public class Customer : Person
         Document = customerDTO.Document;
         Name = customerDTO.Name;
         BirthDate = customerDTO.BirthDate;
-        Address = customerDTO.Address;
+        Address = new(){ Id = customerDTO.AddressId };
         Telephone = customerDTO.Telephone;
         Email = customerDTO.Email;
         Income = customerDTO.Income;

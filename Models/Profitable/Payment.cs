@@ -14,9 +14,9 @@ public class Payment
 
     public Payment(PaymentDTO paymentDTO)
     {
-        this.Card = paymentDTO.Card;
-        this.Fetlock = paymentDTO.Fetlock;
-        this.Pix = paymentDTO.Pix;
+        this.Card = new() { CardNumber = paymentDTO.CardNumber };
+        this.Fetlock = new() { Id = paymentDTO.FetlockId };
+        this.Pix = new() { Id = paymentDTO.PixId };
         this.PaymentDate = paymentDTO.PaymentDate;
     }
 }

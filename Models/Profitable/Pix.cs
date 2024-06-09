@@ -12,7 +12,7 @@ public class Pix
 
     public Pix(PixDTO pixDTO)
     {
-        this.Type = pixDTO.Type;
+        this.Type = new() { Id = pixDTO.TypeId };
         this.PixKey = pixDTO.PixKey;
     }
 }

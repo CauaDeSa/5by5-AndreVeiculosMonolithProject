@@ -5,8 +5,8 @@ namespace Models.People;
 public class Employee : Person
 {
     public JobTitle Function { get; set; }
-    public Decimal ComissionAmount { get; set; }
-    public Decimal Comission { get; set; }
+    public double ComissionAmount { get; set; }
+    public double Comission { get; set; }
 
     public Employee() { }
 
@@ -18,7 +18,7 @@ public class Employee : Person
         Address = employeeDTO.Address;
         Telephone = employeeDTO.Telephone;
         Email = employeeDTO.Email;
-        Function = employeeDTO.Function;
+        Function = new() { Id = employeeDTO.FunctionId };
         ComissionAmount = employeeDTO.ComissionAmount;
         Comission = employeeDTO.Comission;
     }

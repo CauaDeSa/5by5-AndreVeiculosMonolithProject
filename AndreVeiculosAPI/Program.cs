@@ -1,4 +1,9 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using AndreVeiculosAPI.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<AndreVeiculosAPIContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("AndreVeiculosAPIContext") ?? throw new InvalidOperationException("Connection string 'AndreVeiculosAPIContext' not found.")));
 
 // Add services to the container.
 
