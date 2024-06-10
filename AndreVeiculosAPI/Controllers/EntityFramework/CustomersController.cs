@@ -16,7 +16,7 @@ namespace AndreVeiculosAPI.Controllers.EntityFramework
             _context = context;
         }
 
-        [HttpGet]
+        [HttpGet("entity")]
         public async Task<ActionResult<IEnumerable<Customer>>> GetCustomer()
         {
             if (_context.Customer == null)
@@ -26,7 +26,7 @@ namespace AndreVeiculosAPI.Controllers.EntityFramework
             return await _context.Customer.Include(a => a.Address).ToListAsync();
         }
 
-        [HttpGet("{document}")]
+        [HttpGet("entity{document}")]
         public async Task<ActionResult<Customer>> GetCustomer(string document)
         {
             if (_context.Customer == null)
@@ -43,7 +43,7 @@ namespace AndreVeiculosAPI.Controllers.EntityFramework
             return customer;
         }
 
-        [HttpPost]
+        [HttpPost("entity")]
         public async Task<ActionResult<Customer>> PostCustomer(Customer customer)
         {
             if (_context.Customer == null)

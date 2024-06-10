@@ -17,7 +17,7 @@ namespace AndreVeiculosAPI.Controllers.EntityFramework
             _context = context;
         }
 
-        [HttpGet]
+        [HttpGet("entity")]
         public async Task<ActionResult<IEnumerable<Purchase>>> GetPurchase()
         {
             if (_context.Purchase == null)
@@ -27,7 +27,7 @@ namespace AndreVeiculosAPI.Controllers.EntityFramework
             return await _context.Purchase.Include(x => x.Car).ToListAsync();
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("entity{id}")]
         public async Task<ActionResult<Purchase>> GetPurchase(int id)
         {
             if (_context.Purchase == null)
@@ -44,7 +44,7 @@ namespace AndreVeiculosAPI.Controllers.EntityFramework
             return purchase;
         }
 
-        [HttpPost]
+        [HttpPost("entity")]
         public async Task<ActionResult<Purchase>> PostPurchase(PurchaseDTO dto)
         {
             Purchase purchase = new(dto);
@@ -58,11 +58,6 @@ namespace AndreVeiculosAPI.Controllers.EntityFramework
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetPurchase", new { id = purchase.Id }, purchase);
-        }
-
-        private bool PurchaseExists(int id)
-        {
-            return (_context.Purchase?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

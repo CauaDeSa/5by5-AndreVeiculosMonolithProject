@@ -17,7 +17,7 @@ namespace AndreVeiculosAPI.Controllers.EntityFramework
             _context = context;
         }
 
-        [HttpGet]
+        [HttpGet("entity")]
         public async Task<ActionResult<IEnumerable<Sale>>> GetSale()
         {
             if (_context.Sale == null)
@@ -27,7 +27,7 @@ namespace AndreVeiculosAPI.Controllers.EntityFramework
             return await _context.Sale.Include(x => x.Car).Include(x => x.Customer).Include(x => x.Customer.Address).Include(x => x.Employee).Include(x => x.Employee.Address).Include(x => x.Employee.Function).Include(x => x.Payment).Include(x => x.Payment.Fetlock).Include(x => x.Payment.Card).Include(x => x.Payment.Pix).Include(x => x.Payment.Pix.Type).ToListAsync();
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("entity{id}")]
         public async Task<ActionResult<Sale>> GetSale(int id)
         {
             if (_context.Sale == null)
@@ -44,7 +44,7 @@ namespace AndreVeiculosAPI.Controllers.EntityFramework
             return sale;
         }
 
-        [HttpPost]
+        [HttpPost("entity")]
         public async Task<ActionResult<Sale>> PostSale(SaleDTO dto)
         {
             Sale sale = new(dto);
@@ -62,11 +62,6 @@ namespace AndreVeiculosAPI.Controllers.EntityFramework
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetSale", new { id = sale.Id }, sale);
-        }
-
-        private bool SaleExists(int id)
-        {
-            return (_context.Sale?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

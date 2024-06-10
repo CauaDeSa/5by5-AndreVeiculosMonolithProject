@@ -16,8 +16,7 @@ namespace AndreVeiculosAPI.Controllers.EntityFramework
             _context = context;
         }
 
-        // GET: api/Cars
-        [HttpGet]
+        [HttpGet("entity")]
         public async Task<ActionResult<IEnumerable<Car>>> GetCar()
         {
             if (_context.Car == null)
@@ -27,8 +26,7 @@ namespace AndreVeiculosAPI.Controllers.EntityFramework
             return await _context.Car.ToListAsync();
         }
 
-        // GET: api/Cars/5
-        [HttpGet("{plate}")]
+        [HttpGet("entity{plate}")]
         public async Task<ActionResult<Car>> GetCar(string plate)
         {
             if (_context.Car == null)
@@ -45,36 +43,7 @@ namespace AndreVeiculosAPI.Controllers.EntityFramework
             return car;
         }
 
-        //[HttpPut("{id}")]
-        //public async Task<IActionResult> PutCar(string id, Car car)
-        //{
-        //    if (id != car.Plate)
-        //    {
-        //        return BadRequest();
-        //    }
-
-        //    _context.Entry(car).State = EntityState.Modified;
-
-        //    try
-        //    {
-        //        await _context.SaveChangesAsync();
-        //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-        //        if (!CarExists(id))
-        //        {
-        //            return NotFound();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
-
-        //    return NoContent();
-        //}
-
-        [HttpPost]
+        [HttpPost("entity")]
         public async Task<ActionResult<Car>> PostCar(Car car)
         {
             if (_context.Car == null)
@@ -105,24 +74,5 @@ namespace AndreVeiculosAPI.Controllers.EntityFramework
         {
             return (_context.Car?.Any(e => e.Plate == plate)).GetValueOrDefault();
         }
-
-        //[HttpDelete("{id}")]
-        //public async Task<IActionResult> DeleteCar(string id)
-        //{
-        //    if (_context.Car == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    var car = await _context.Car.FindAsync(id);
-        //    if (car == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    _context.Car.Remove(car);
-        //    await _context.SaveChangesAsync();
-
-        //    return NoContent();
-        //}
     }
 }

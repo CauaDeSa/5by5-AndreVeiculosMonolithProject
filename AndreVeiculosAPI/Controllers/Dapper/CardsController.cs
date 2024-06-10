@@ -1,37 +1,37 @@
 ﻿using Dapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
-using Models.People;
+using Models.Profitable;
 
 namespace AndreVeiculosAPI.Controllers.Dapper;
 
-public class AddressesController : ControllerBase
+public class CardController
 {
     private readonly string _connectionString;
 
-    public AddressesController(IConfiguration configuration)
+    public CardController(IConfiguration configuration)
     {
         _connectionString = configuration.GetConnectionString("AndreVeiculosAPIContext");
     }
 
-    public Address GetAddress(int id)
+    public async Task<ActionResult<Card>> GetCard(int id)
     {
         using SqlConnection connection = new(_connectionString);
-        connection.Open();
+        await connection.OpenAsync();
 
-        var address = connection.QuerySingle<Address>(Address.Select, id);
+        var card = connection.QuerySingle<Card>(Card.Select, new { cardNumber = id });
 
         connection.Close();
 
-        return address;
+        return card;
     }
 
-    public int PostAddress(Address address)
+    public int PostCard(Card card)
     {
         using SqlConnection connection = new(_connectionString);
         connection.Open();
 
-        int id = connection.QuerySingle<int>(Address.Insert, address);
+        int id = connection.ExecuteScalar<int>(Card.Insert, new { card.CardNumber, card.SecurityKey, card.DueDate, card.CardName });
 
         connection.Close();
 
