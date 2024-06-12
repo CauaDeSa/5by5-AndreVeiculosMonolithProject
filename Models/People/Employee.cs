@@ -19,7 +19,7 @@ public class Employee : Person
         Document = employeeDTO.Document;
         Name = employeeDTO.Name;
         BirthDate = employeeDTO.BirthDate;
-        Address = employeeDTO.Address;
+        Address = new() { Id = employeeDTO.AddressId };
         Telephone = employeeDTO.Telephone;
         Email = employeeDTO.Email;
         Function = new() { Id = employeeDTO.FunctionId };

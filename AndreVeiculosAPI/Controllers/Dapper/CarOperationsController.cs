@@ -7,7 +7,8 @@ using Models.CarsDTO;
 namespace AndreVeiculosAPI.Controllers.Dapper;
 
 [Route("api/[controller]")]
-public class CarOperationsController
+[ApiController]
+public class CarOperationsController : ControllerBase
 {
     private readonly string _connectionString;
     private readonly CarsController _carsController;

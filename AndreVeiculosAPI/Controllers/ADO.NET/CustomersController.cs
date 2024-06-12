@@ -6,6 +6,7 @@ using Models.PeopleDTO;
 namespace AndreVeiculosAPI.Controllers.ADO.NET;
 
 [Route("api/[controller]")]
+[ApiController]
 public class CustomersController
 {
     private readonly string _connectionString;

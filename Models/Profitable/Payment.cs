@@ -9,9 +9,9 @@ public class Payment
     public static readonly string Insert = "INSERT INTO Payment (CardNumber, FetlockId, PixId, PaymentDate) OUTPUT INSERTED.Id VALUES (@CardNumber, @FetlockId, @PixId, @PaymentDate)";
 
     public int Id { get; set; }
-    public Card Card { get; set; }
-    public Fetlock Fetlock { get; set; }
-    public Pix Pix { get; set; }
+    public Card? Card { get; set; }
+    public Fetlock? Fetlock { get; set; }
+    public Pix? Pix { get; set; }
     public DateTime PaymentDate { get; set; }
 
     public Payment() { }

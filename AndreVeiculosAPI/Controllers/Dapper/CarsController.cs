@@ -7,7 +7,7 @@ namespace AndreVeiculosAPI.Controllers.Dapper;
 
 [Route("api/[controller]")]
 [ApiController]
-public class CarsController
+public class CarsController : ControllerBase
 {
     private readonly string _connectionString;
 

@@ -19,22 +19,22 @@ public class AddressesController : ControllerBase
         using SqlConnection connection = new(_connectionString);
         connection.Open();
 
-        var address = connection.QuerySingle<Address>(Address.Select, id);
+        var address = connection.QuerySingle<Address>(Address.Select, new { Id = id });
 
         connection.Close();
 
         return address;
     }
 
-    public int PostAddress(Address address)
+    public Address PostAddress(Address address)
     {
         using SqlConnection connection = new(_connectionString);
         connection.Open();
 
-        int id = connection.QuerySingle<int>(Address.Insert, address);
+        address.Id = connection.QuerySingle<int>(Address.Insert, address);
 
         connection.Close();
 
-        return id;
+        return address;
     }
 }

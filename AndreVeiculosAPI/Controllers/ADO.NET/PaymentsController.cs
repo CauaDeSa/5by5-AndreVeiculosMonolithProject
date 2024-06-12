@@ -85,7 +85,7 @@ public class PaymentsController
     }
 
     [HttpPost("ado")]
-    public async Task<ActionResult<Payment>> PostPayment(PaymentDTO dto)
+    public async Task<ActionResult<Payment>> PostPayment(Payment dto)
     {
         using SqlConnection connection = new(_connectionString);
         await connection.OpenAsync();
@@ -96,10 +96,10 @@ public class PaymentsController
             CommandText = Payment.Insert
         };
 
-        command.Parameters.AddWithValue("@CardNumber", _cardController.GetCard(dto.CardNumber).CardNumber);
-        command.Parameters.AddWithValue("@FetlockId", _fetlockController.GetFetlock(dto.FetlockId).Id);
+        command.Parameters.AddWithValue("@CardNumber", _cardController.PostCard(dto.Card).CardNumber);
+        command.Parameters.AddWithValue("@FetlockId", _fetlockController.PostFetlock(dto.Fetlock).Id);
         Console.WriteLine("Passou");
-        command.Parameters.AddWithValue("@PixId", _pixController.GetPix(dto.PixId).Id);
+        command.Parameters.AddWithValue("@PixId", _pixController.PostPix(dto.Pix).Id);
         command.Parameters.AddWithValue("@PaymentDate", dto.PaymentDate);
 
         return await GetPayment((int)command.ExecuteScalar());

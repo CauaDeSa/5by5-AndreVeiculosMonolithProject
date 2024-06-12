@@ -5,6 +5,7 @@ using Models.People;
 namespace AndreVeiculosAPI.Controllers.ADO.NET;
 
 [Route("api/[controller]")]
+[ApiController]
 public class EmployeesController
 {
     private readonly string _connectionString;

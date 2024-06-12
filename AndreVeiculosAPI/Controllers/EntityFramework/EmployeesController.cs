@@ -45,13 +45,8 @@ namespace AndreVeiculosAPI.Controllers.EntityFramework
         }
 
         [HttpPost("entity")]
-        public async Task<ActionResult<Employee>> PostEmployee(EmployeeDTO dto)
+        public async Task<ActionResult<Employee>> PostEmployee(Employee employee)
         {
-            Employee employee = new(dto)
-            {
-                Function = await _context.JobTitle.FindAsync(dto.FunctionId)
-            };
-
             _context.Employee.Add(employee);
             
             try

@@ -1,5 +1,4 @@
-﻿using AndreVeiculosAPI.Controllers.ADO.NET;
-using Dapper;
+﻿using Dapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Models.People;
@@ -8,7 +7,8 @@ using Models.PeopleDTO;
 namespace AndreVeiculosAPI.Controllers.Dapper;
 
 [Route("api/[controller]")]
-public class CustomersController
+[ApiController]
+public class CustomersController : ControllerBase
 {
     private readonly string _connectionString;
     private readonly AddressesController _addressController;
@@ -45,10 +45,16 @@ public class CustomersController
         using SqlConnection connection = new(_connectionString);
         await connection.OpenAsync();
 
-        var customer = await connection.QueryFirstOrDefaultAsync<Customer>(Customer.Select, new { Document = document });
+        var dto = await connection.QueryFirstOrDefaultAsync<CustomerDTO>(Customer.Select, new { Document = document });
+
+        if (dto is null)
+        {
+            return NotFound();
+        }
+
+        Customer customer = new(dto) { Address = _addressController.GetAddress(dto.AddressId) };
 
         connection.Close();
-
 
         return customer;
     }
@@ -59,7 +65,9 @@ public class CustomersController
         using SqlConnection connection = new(_connectionString);
         connection.Open();
 
-        connection.Execute(Customer.Insert, customer);
+        customer.Address = _addressController.PostAddress(customer.Address);
+
+        connection.Execute(Customer.Insert, new{ Document = customer.Document, Income = customer.Income, DocumentPDF = customer.DocumentPDF, Name = customer.Name, BirthDate = customer.BirthDate, AddressId = customer.Address.Id, Telephone = customer.Telephone, Email = customer.Email });
 
         connection.Close();
 
